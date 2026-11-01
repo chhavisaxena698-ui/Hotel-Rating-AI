@@ -182,42 +182,19 @@ elif page == "Rating Prediction":
 # 8. RAW DATA SECTION
 # --------------------------------
 
-elif page == "Rating Prediction":
+elif page == "Raw Data":
 
-    st.header("🤖 Hotel Rating AI")
-    st.subheader("AI Powered Live Rating Prediction")
+    st.header("📋 Raw Dataset")
 
-    st.write(
-        "Enter your hotel experience and our Machine Learning "
-        "model will predict the expected rating."
+    st.write("Complete Hotel Reviews Dataset")
+
+    st.dataframe(
+        data,
+        use_container_width=True,
+        height=500
     )
 
-    review = st.text_area(
-        "Enter Your Hotel Review",
-        placeholder="Example: Excellent hotel, clean rooms and helpful staff.",
-        height=150
-    )
+    col1, col2 = st.columns(2)
 
-    if st.button("Predict Hotel Rating ⭐", type="primary"):
-
-        if review.strip():
-
-            prediction = model.predict([review])[0]
-            prediction = max(1, min(5, prediction))
-
-            st.success("Prediction Completed!")
-
-            st.metric(
-                "Predicted Hotel Rating",
-                f"{prediction:.2f} / 5 ⭐"
-            )
-
-            if prediction >= 4:
-                st.info("Positive Customer Experience 😊")
-            elif prediction >= 3:
-                st.info("Average Customer Experience")
-            else:
-                st.warning("Negative Customer Experience")
-
-        else:
-            st.warning("Please enter a hotel review first.")
+    col1.metric("Total Rows", f"{data.shape[0]:,}")
+    col2.metric("Total Columns", data.shape[1])
