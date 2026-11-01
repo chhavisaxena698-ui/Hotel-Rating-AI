@@ -1,6 +1,5 @@
 import gradio as gr
 import joblib
-import os
 
 # Load Trained Machine Learning Model
 model = joblib.load("hotel_rating_model.pkl")
@@ -82,7 +81,4 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
 
 # Launch Gradio Application
 if __name__ == "__main__":
-    demo.launch(
-        server_name="0.0.0.0",
-        server_port=int(os.environ.get("PORT", 7860))
-    )
+    demo.launch()

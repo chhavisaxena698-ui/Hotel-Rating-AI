@@ -4,5 +4,5 @@ scikit-learn
 matplotlib
 seaborn
 streamlit
-gradio==5.49.1
+gradio
 joblib
